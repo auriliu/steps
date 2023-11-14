@@ -1,5 +1,6 @@
 //
 import "./index.css";
+import { useState } from "react";
 
 const messages = [
   "Learn React ⚛️",
@@ -8,7 +9,16 @@ const messages = [
 ];
 
 function App() {
-  const step = 1;
+  const [step, setStep] = useState(1);
+
+  function handlePrevious() {
+    if (step > 1) setStep(step - 1);
+  }
+
+  function handleNext() {
+    if (step < 3) setStep(step + 1);
+  }
+  // const step = 1;
 
   return (
     <div className="steps">
@@ -21,10 +31,16 @@ function App() {
         step {step}: {messages[step - 1]}
       </p>
       <div className="buttons">
-        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+        <button
+          onClick={handlePrevious}
+          style={{ backgroundColor: "#7950f2", color: "#fff" }}
+        >
           previous
         </button>
-        <button style={{ backgroundColor: "#7950f2", color: "#fff" }}>
+        <button
+          onClick={handleNext}
+          style={{ backgroundColor: "#7950f2", color: "#fff" }}
+        >
           next
         </button>
       </div>
